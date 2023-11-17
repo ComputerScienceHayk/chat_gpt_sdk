@@ -9,20 +9,11 @@ import 'package:chat_gpt_sdk/src/model/cancel/cancel_data.dart';
 import 'package:chat_gpt_sdk/src/model/error/openai_error.dart';
 import 'package:chat_gpt_sdk/src/utils/json_decode_string.dart';
 import 'package:dio/dio.dart';
-import 'package:http_certificate_pinning/http_certificate_pinning.dart';
 
 class OpenAIClient extends OpenAIWrapper {
   OpenAIClient({required Dio dio, bool isLogging = false}) {
     _dio = dio;
 
-    List<String> allowedSHAFingerprints = [
-      'BE:08:80:D4:07:BF:58:92:9F:AD:7F:00:F6:57:13:2A:C2:3E:9D:00:59:AF:1A:7E:AE:8B:E7:70:02:79:CC:83',
-    ];
-    _dio
-      ..interceptors.add(CertificatePinningInterceptor(
-        allowedSHAFingerprints: allowedSHAFingerprints,
-        timeout: 60, 
-      ));
     log = Logger.instance.builder(isLogging: isLogging);
   }
 

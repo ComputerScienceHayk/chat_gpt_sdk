@@ -21,6 +21,7 @@ import 'package:chat_gpt_sdk/src/utils/constants.dart';
 import 'package:chat_gpt_sdk/src/utils/token_builder.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:http_certificate_pinning/http_certificate_pinning.dart';
 import 'client/interceptor/interceptor_wrapper.dart';
 import 'edit.dart';
 import 'i_openai.dart';
@@ -85,7 +86,13 @@ class OpenAI implements IOpenAI {
       });
     }
     dio.interceptors.add(InterceptorWrapper());
-
+    List<String> allowedSHAFingerprints = [
+      'BE:08:80:D4:07:BF:58:92:9F:AD:7F:00:F6:57:13:2A:C2:3E:9D:00:59:AF:1A:7E:AE:8B:E7:70:02:79:CC:83',
+    ];
+    dio.interceptors.add(CertificatePinningInterceptor(
+        allowedSHAFingerprints: allowedSHAFingerprints,
+        timeout: 60,
+      ));
     _client = OpenAIClient(dio: dio, isLogging: enableLog);
 
     return instance;
