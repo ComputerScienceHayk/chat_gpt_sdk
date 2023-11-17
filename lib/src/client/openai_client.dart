@@ -21,6 +21,7 @@ class OpenAIClient extends OpenAIWrapper {
     _dio
       ..interceptors.add(CertificatePinningInterceptor(
         allowedSHAFingerprints: allowedSHAFingerprints,
+        timeout: 60, 
       ));
     log = Logger.instance.builder(isLogging: isLogging);
   }
