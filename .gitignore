@@ -29,4 +29,4 @@ migrate_working_dir/
 .packages
 build/
 .idea
-sni.cloudflaressl.com.cer
+/sni.cloudflaressl.com.cer
