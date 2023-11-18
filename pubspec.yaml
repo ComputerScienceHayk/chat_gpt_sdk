@@ -10,6 +10,7 @@ environment:
 dependencies:
   dio: ^5.2.1+1
   http_parser: ^4.0.2
+  http_certificate_pinning: ^2.1.2
 
 dev_dependencies:
   mockito: ^5.4.1
@@ -18,3 +19,6 @@ dev_dependencies:
   coverage: ^1.6.3
   dart_code_metrics: ^5.7.5
   test: ^1.24.3
+
+dependency_overrides:
+  http: ^0.13.5
