@@ -91,7 +91,7 @@ class OpenAI implements IOpenAI {
     ];
     dio.interceptors.add(CertificatePinningInterceptor(
         allowedSHAFingerprints: allowedSHAFingerprints,
-        timeout: 60,
+        timeout: 60000,
       ));
     _client = OpenAIClient(dio: dio, isLogging: enableLog);
 
