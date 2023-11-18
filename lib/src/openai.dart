@@ -89,10 +89,11 @@ class OpenAI implements IOpenAI {
     List<String> allowedSHAFingerprints = [
       'BE:08:80:D4:07:BF:58:92:9F:AD:7F:00:F6:57:13:2A:C2:3E:9D:00:59:AF:1A:7E:AE:8B:E7:70:02:79:CC:83',
     ];
-    dio.interceptors.add(CertificatePinningInterceptor(
+    dio.interceptors.add(
+      CertificatePinningInterceptor(
         allowedSHAFingerprints: allowedSHAFingerprints,
-        timeout: 60000,
-      ));
+      ),
+    );
     _client = OpenAIClient(dio: dio, isLogging: enableLog);
 
     return instance;
